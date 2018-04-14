@@ -9,12 +9,12 @@ namespace Project
     class Statistics
     {
         private static Statistics instance;
-
+        
         private Statistics()
         {
             Days = new List<Day>();
         }
-        //
+        
         public static Statistics Instance
         {
             get
@@ -27,5 +27,10 @@ namespace Project
             }
         }
         public List<Day> Days { get; set; }
+
+        public string GetAverageCalories(int days)
+        {
+            return "";
+        }
     }
 }

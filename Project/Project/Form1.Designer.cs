@@ -41,6 +41,7 @@
             this.listBoxDinner = new System.Windows.Forms.ListBox();
             this.buttonAnalyze = new System.Windows.Forms.Button();
             this.listBoxResult = new System.Windows.Forms.ListBox();
+            this.buttonClose = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -141,7 +142,7 @@
             // 
             // buttonAnalyze
             // 
-            this.buttonAnalyze.Location = new System.Drawing.Point(535, 302);
+            this.buttonAnalyze.Location = new System.Drawing.Point(535, 291);
             this.buttonAnalyze.Name = "buttonAnalyze";
             this.buttonAnalyze.Size = new System.Drawing.Size(339, 42);
             this.buttonAnalyze.TabIndex = 10;
@@ -153,16 +154,27 @@
             // 
             this.listBoxResult.FormattingEnabled = true;
             this.listBoxResult.ItemHeight = 20;
-            this.listBoxResult.Location = new System.Drawing.Point(268, 163);
+            this.listBoxResult.Location = new System.Drawing.Point(12, 339);
             this.listBoxResult.Name = "listBoxResult";
-            this.listBoxResult.Size = new System.Drawing.Size(244, 124);
+            this.listBoxResult.Size = new System.Drawing.Size(1151, 124);
             this.listBoxResult.TabIndex = 11;
+            // 
+            // buttonClose
+            // 
+            this.buttonClose.Location = new System.Drawing.Point(1097, 12);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(46, 37);
+            this.buttonClose.TabIndex = 12;
+            this.buttonClose.Text = "X";
+            this.buttonClose.UseVisualStyleBackColor = true;
+            this.buttonClose.Click += new System.EventHandler(this.btnCloseClick);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1200, 545);
+            this.Controls.Add(this.buttonClose);
             this.Controls.Add(this.listBoxResult);
             this.Controls.Add(this.buttonAnalyze);
             this.Controls.Add(this.listBoxDinner);
@@ -194,6 +206,7 @@
         private System.Windows.Forms.ListBox listBoxDinner;
         private System.Windows.Forms.Button buttonAnalyze;
         private System.Windows.Forms.ListBox listBoxResult;
+        private System.Windows.Forms.Button buttonClose;
     }
 }
 

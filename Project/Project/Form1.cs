@@ -8,34 +8,20 @@ namespace Project
         public Form1()
         {
             InitializeComponent();
+            Storage storage = Storage.Instance;
+            storage.OpenConnection();
         }
 
         Day today = new Day();
         private void btnAddClick(object sender, EventArgs e)
         {
-            
             Storage storage = Storage.Instance;
-
-            Food f = new Food();
-            f.calories = 20;
-            f.name = "egg";
-            f.category = 1; storage.Foods.Add(f);
-
-            Food f2 = new Food();
-            f2.calories = 20;
-            f2.name = "meat";
-            f2.category = 2; storage.Foods.Add(f2);
-
-            Food f3 = new Food();
-            f3.calories = 20;
-            f3.name = "fish";
-            f3.category = 3; storage.Foods.Add(f3);
-
             string input = textBoxInput.Text;
 
             Food food = storage.GetFood(input);
             if (food != null)
             {
+                if(!radioButtonBreakfast.Checked && !radioButtonLunch.Checked && !radioButtonDinner.Checked)
                 if (radioButtonBreakfast.Checked)
                 {
                     Period breakfast = new Period(PeriodType.Breakfast);
@@ -64,11 +50,28 @@ namespace Project
 
         private void btnAnalyzeClick(object sender, EventArgs e)
         {
-            foreach(Period d in today.periods)
+            string s = "";
+
+            string cal  = "Сегодня вы съели " + today.GetCalories() + " калорий";
+            string percent = "Это составляет " + today.GetPercent() + " от суточной нормы";
+            string foods = "";
+            for (int i = 0; i < today.periods.Count; i++)
             {
-                listBoxResult.Items.Add(d.type+" " + d.foods);
+                int size = today.periods[i].GetDiverse().Count;
+                if ( size> 0)
+                {
+                    foods = "Не стоит употреблять вместе ";
+                    for (int j = 0; j < size; j++)
+                    {
+                        //
+                    }
+                } 
             }
 
+            string analog = "Вы также можете заменить " + "!" + " на это "+")";
+            s = cal + percent + foods + analog;
+
+            listBoxResult.Items.Add(s);
             Statistics st = Statistics.Instance;
             st.Days.Add(today);
 
@@ -76,7 +79,13 @@ namespace Project
             listBoxDinner.Items.Clear();
             listBoxBreakfast.Items.Clear();
             listBoxLunch.Items.Clear();
-            
+        }
+
+        private void btnCloseClick(object sender, EventArgs e)
+        {
+            Storage storage = Storage.Instance;
+            storage.CloseConnection();
+          Application.Exit();
         }
     }
 }

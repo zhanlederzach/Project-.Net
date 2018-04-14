@@ -8,8 +8,16 @@ namespace Project
 {
     class Food
     {
+        public string name;
         public int calories;
         public int category;
-        public string name;
+
+        public Food(string n, int c, int cat)
+        {
+            calories = c;
+            category = cat;
+            name = n;
+        }
+        
     }
 }

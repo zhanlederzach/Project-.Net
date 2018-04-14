@@ -10,25 +10,33 @@ namespace Project
     {
         public List<Period> periods = new List<Period>();
         public int coef;
-
-        public int Coef { get; set; }
-
+        
         public int GetCalories()
         {
-            return 0;
+            int cal = 0;
+            for (int i = 0; i < periods.Count; i++)
+            {
+                cal += periods.ElementAt(i).GetCalories();
+            }
+
+            return cal;
         }
 
-        public List<Tuple<Food, Food>> GetDiverse()
+        public string GetPercent()
         {
-            List<Tuple<Food, Food>> diverses = new List<Tuple<Food, Food>>();
-            foreach (Period p in periods)
+            return GetCalories() * 100 / 2500 + "%";
+        }
+
+        public string GetMotivation()
+        {
+            string motivation="";
+            if (coef > 1) motivation = "Молодчинка!";
+            else if (coef < 1) motivation = "Ну постарайся еще, жируха уахахах";
+            else if (coef == 0)
             {
-                foreach(Tuple<Food, Food> t in p.GetDiverse())
-                {
-                    diverses.Add(t);
-                }
+                return "";
             }
-            return diverses;
+            return motivation;
         }
     }
 }
